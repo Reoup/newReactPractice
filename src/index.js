@@ -33,7 +33,9 @@ class App extends Component{
             <div>
                 <SearchBar />
                 <VideoDetail video={this.state.selectedVideo}/> {/*this.state.videos 부분은 빈배열임*/ }
-                <VideoList videos={this.state.videos} />
+                <VideoList 
+                onVideoSelect={selectedVideo => this.setState({selectedVideo})} // selectVideo 변경 업데이트
+                videos={this.state.videos} />
             </div>
         );
     }
