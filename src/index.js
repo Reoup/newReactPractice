@@ -15,10 +15,16 @@ class App extends Component{
     constructor(props){
         super(props);
 
-        this.state = { videos: [] };
+        this.state = { 
+            videos: [],
+            selectedVideo: null
+        };
 
         YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
-            this.setState({ videos }); // videos: videos
+            this.setState({ 
+                videos: videos, // 비디오 리스트를 this.state.videos로 전달
+                selectedVideo: videos[0] // 리스트의  첫 번째 비디오가 선택 비디오로 세팅
+            });
             //this.setState({videos: videos});
         });
     }
@@ -26,7 +32,7 @@ class App extends Component{
         return(
             <div>
                 <SearchBar />
-                <VideoDetail video={this.state.videos[0]}/>
+                <VideoDetail video={this.state.selectedVideo}/> {/*this.state.videos 부분은 빈배열임*/ }
                 <VideoList videos={this.state.videos} />
             </div>
         );
